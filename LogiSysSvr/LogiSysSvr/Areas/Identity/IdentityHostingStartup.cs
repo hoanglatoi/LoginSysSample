@@ -30,6 +30,20 @@ namespace LogiSysSvr.Areas.Identity
                 services.AddDefaultIdentity<MyIdentifyUser>()
                     .AddRoles<IdentityRole>()
                     .AddEntityFrameworkStores<ApplicationDbContext>();
+                //services.AddIdentity<IdentityUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = false)
+                // .AddDefaultUI()
+                // .AddEntityFrameworkStores<ApplicationDbContext>()
+                // .AddDefaultTokenProviders();
+                //services.AddControllersWithViews();
+                //services.AddRazorPages();
+
+                // add policy
+                services.AddAuthorization(options => {
+                    //options.AddPolicy("readpolicy",
+                    //    builder => builder.RequireRole("SystemManager", "QAManager", "User"));
+                    options.AddPolicy("writepolicy",
+                        builder => builder.RequireRole("SystemManager", "QAManager"));
+                });
             });
         }
     }
