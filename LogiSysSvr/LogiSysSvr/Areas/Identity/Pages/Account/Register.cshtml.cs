@@ -17,7 +17,7 @@ using Microsoft.Extensions.Logging;
 
 namespace LogiSysSvr.Areas.Identity.Pages.Account
 {
-    [AllowAnonymous]
+    [Authorize(Roles = "SystemManager, QAManager")]
     public class RegisterModel : PageModel
     {
         private readonly SignInManager<MyIdentifyUser> _signInManager;
